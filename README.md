@@ -13,7 +13,7 @@ djangorestframework_simplejwt  5.5.0 <br>
 goto->telegram app->search->BotFather <br>
 message:/start->create new bot and name it and get token <br>
 
-#Used the JWT AUTHENTICATION
+# Used the JWT AUTHENTICATION<br>
 one for login whcih is public and home page as private used is permission_classess <br>
 
 # NOTE
