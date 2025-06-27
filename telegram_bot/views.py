@@ -7,6 +7,11 @@ from rest_framework import serializers
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 import requests
+import os
+from dotenv import load_dotenv
+load_dotenv()
+API_URL = os.getenv("API_URL")
+
 
 class TelegramUserView(APIView):
     def post(self, request):
@@ -16,11 +21,6 @@ class TelegramUserView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-            
-# Function to handle the /start command
-
-
-API_URL = 'https://rnlyw-115-97-181-25.a.free.pinggy.link/telegram/api/userdetails/'
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     username = update.message.from_user.username or "Anonymous"
@@ -40,7 +40,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 def main():
    
-    bot_token = "7670872262:AAHV2jz-nRM4NxvUePji5otGbfiLR3_WlQM"
+    bot_token = os.getenv("bot_token")
     
     app = ApplicationBuilder().token(bot_token).build()
     
